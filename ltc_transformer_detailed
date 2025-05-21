@@ -1,0 +1,31 @@
+// LTC_Transformer Detailed Architecture
+digraph {
+	I [label="Input
+(batch, seq_len, 22)"]
+	L_in [label="Time-step Processing"]
+	L_proc [label="LTC Cell
+(Adaptive Time Constant)"]
+	L_stack [label="Hidden State Stack
+(batch, seq_len, 64)"]
+	T_attn [label="Self-Attention
+(heads=2)"]
+	T_ff [label="Feed-Forward
+(dim=128)"]
+	T_out [label="Contextualized Features"]
+	P [label="Global Avg Pooling
+(batch, 64)"]
+	C [label="Classifier Network
+(64→32→4)"]
+	O [label="Output
+(batch, 4)"]
+	I -> L_in
+	L_in -> L_proc
+	L_proc -> L_stack
+	L_stack -> T_attn
+	T_attn -> T_ff
+	T_ff -> T_out
+	T_out -> P
+	P -> C
+	C -> O
+	L_proc -> L_proc [label="h(t)→h(t+1)" constraint=false]
+}

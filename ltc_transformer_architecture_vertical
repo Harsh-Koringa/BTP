@@ -1,0 +1,34 @@
+// LTC_Transformer Model Architecture
+digraph {
+	rankdir=TB
+	node [fontname=Arial shape=box style=filled]
+	size="7.5,10"
+	input [label="Input Sequence
+(batch, seq_len, 22)" fillcolor=lightblue]
+	ltc [label="LTC Cell Layers
+(22→64)" fillcolor=lightgreen]
+	transformer [label="Transformer Encoder
+(hidden_dim=64, nhead=2)" fillcolor=lightsalmon]
+	transformer_out [label="Transformer Output
+(batch, seq_len, 64)" fillcolor=lightsalmon]
+	fc1 [label="Linear
+(64→32)" fillcolor=lightblue]
+	relu [label=ReLU fillcolor=lightblue]
+	dropout [label="Dropout(0.5)" fillcolor=lightblue]
+	fc2 [label="Linear
+(32→4)" fillcolor=lightblue]
+	output [label="Output
+(batch, 4)" fillcolor=lightblue]
+	input -> ltc
+	ltc -> transformer
+	transformer -> transformer_out
+	transformer_out -> fc1
+	fc1 -> relu
+	relu -> dropout
+	dropout -> fc2
+	fc2 -> output
+	note1 [label="Adaptive time constants in LTC Cells" color=gray fillcolor=white shape=note]
+	note1 -> ltc [arrowhead=none color=gray style=dashed]
+	note2 [label="Transformer with multi-head attention" color=gray fillcolor=white shape=note]
+	note2 -> transformer [arrowhead=none color=gray style=dashed]
+}

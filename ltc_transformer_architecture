@@ -1,0 +1,37 @@
+// LTC_Transformer Architecture
+digraph {
+	rankdir=LR
+	input [label="Input Sequence
+(batch, seq_len, 22)" shape=box]
+	subgraph cluster_ltc {
+		fillcolor=lightblue label="LTC Processing" style="rounded,filled"
+		ltc_cell [label="LTC Cell
+(Adaptive Time Constants)" shape=box]
+		ltc_out [label="LTC Hidden States
+(batch, seq_len, 64)" shape=box]
+		ltc_cell -> ltc_cell [label="τ" constraint=false]
+	}
+	subgraph cluster_transformer {
+		fillcolor=lightgreen label="Transformer Encoder" style="rounded,filled"
+		self_attn [label="Self-Attention
+(2 heads)" shape=box]
+		feed_forward [label="Feed-Forward
+(dim=128)" shape=box]
+		layer_norm [label="Layer Normalization" shape=box]
+		transformer_out [label="Contextualized Features" shape=box]
+		self_attn -> layer_norm
+		layer_norm -> feed_forward
+		feed_forward -> transformer_out
+	}
+	note1 [label="Self-attention allows
+tokens to interact across
+time steps" color=gray shape=note]
+	note2 [label="Feed-forward processes
+each time step
+independently" color=gray shape=note]
+	note1 -> self_attn [arrowhead=none color=gray style=dashed]
+	note2 -> feed_forward [arrowhead=none color=gray style=dashed]
+	input -> ltc_cell
+	ltc_cell -> ltc_out
+	ltc_out -> self_attn
+}

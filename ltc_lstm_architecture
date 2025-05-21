@@ -1,0 +1,55 @@
+// LTC_LSTM Model Architecture
+digraph {
+	rankdir=LR
+	node [fontname=Arial shape=box style=filled]
+	input [label="Input Sequence
+(batch, seq_len, 22)" fillcolor=lightblue]
+	subgraph cluster_ltc {
+		color=lightgreen fillcolor=lightgreen label="LTC Processing" style=filled
+		ltc1 [label="LTC Cell Layer 1
+(22→64)" fillcolor=white]
+		ltc2 [label="LTC Cell Layer 2
+(64→64)" fillcolor=white]
+		ltc_out [label="Hidden States Stack
+(batch, seq_len, 64)" fillcolor=white]
+		ltc1 -> ltc2
+		ltc2 -> ltc_out
+		ltc1 -> ltc1 [label="τ" constraint=false]
+		ltc2 -> ltc2 [label="τ" constraint=false]
+	}
+	subgraph cluster_lstm {
+		color=lightsalmon fillcolor=lightsalmon label="LSTM Processing" style=filled
+		lstm [label="LSTM Layer
+(hidden_dim=64)" fillcolor=white]
+		lstm_out [label="Final Hidden State
+(batch, 64)" fillcolor=white]
+		lstm -> lstm_out
+	}
+	subgraph cluster_classifier {
+		color=lightblue fillcolor=lightblue label=Classifier style=filled
+		fc1 [label="Linear
+(64→32)" fillcolor=white]
+		relu [label=ReLU fillcolor=white]
+		dropout [label="Dropout(0.5)" fillcolor=white]
+		fc2 [label="Linear
+(32→4)" fillcolor=white]
+		output [label="Output
+(batch, 4)" fillcolor=white]
+		fc1 -> relu
+		relu -> dropout
+		dropout -> fc2
+		fc2 -> output
+	}
+	input -> ltc1
+	ltc_out -> lstm
+	lstm_out -> fc1
+	note1 [label="Adaptive time constants
+for temporal dynamics" color=gray fillcolor=white shape=note]
+	note2 [label="Processes the entire
+sequence of LTC outputs" color=gray fillcolor=white shape=note]
+	note3 [label="Final classification
+with regularization" color=gray fillcolor=white shape=note]
+	note1 -> ltc1 [arrowhead=none color=gray style=dashed]
+	note2 -> lstm [arrowhead=none color=gray style=dashed]
+	note3 -> dropout [arrowhead=none color=gray style=dashed]
+}

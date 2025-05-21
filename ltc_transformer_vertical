@@ -1,0 +1,37 @@
+// LTC_Transformer Architecture
+digraph {
+	rankdir=TB
+	node [fontname=Arial shape=box style=filled]
+	size="7.5,10"
+	input [label="Input Sequence
+(batch, seq_len, 22)" fillcolor=lightblue]
+	ltc [label="LTC Cell Layer
+(input_dim→64)" fillcolor=lightgreen]
+	ltc_out [label="LTC Hidden States
+(batch, seq_len, 64)" fillcolor=lightgreen]
+	ltc -> ltc [label="τ" constraint=false]
+	attn1 [label="Attention
+(heads=2)" fillcolor=darkorange style=filled]
+	ff1 [label=Feedforward fillcolor=lightsalmon]
+	subgraph cluster_transformer {
+		node [style=filled]
+		fillcolor=lightsalmon label="Transformer Encoder" style="filled,rounded"
+		attn1_placeholder [label="" style=invis]
+		ff1_placeholder [label="" style=invis]
+	}
+	pool [label="Global Average Pooling" fillcolor=lightblue]
+	fc1 [label="Linear (64→32)
+ReLU
+Dropout(0.5)" fillcolor=lightblue]
+	fc2 [label="Linear (32→4)" fillcolor=lightblue]
+	output [label="Output
+(batch, 4)" fillcolor=lightblue]
+	input -> ltc
+	ltc -> ltc_out
+	ltc_out -> attn1
+	attn1 -> ff1
+	ff1 -> pool
+	pool -> fc1
+	fc1 -> fc2
+	fc2 -> output
+}
