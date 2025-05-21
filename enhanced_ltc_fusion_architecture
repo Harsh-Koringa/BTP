@@ -1,0 +1,54 @@
+// EnhancedLTC Model Architecture
+digraph {
+	Input [label="Input
+(batch, seq_len, 22)"]
+	LTC [label="LTC Layers
+(num_layers=2, hidden_dim=64)"]
+	LTC_Out [label="LTC Outputs
+(batch, seq_len, 64)"]
+	Attn_Calc [label="Attention
+Calculation"]
+	Attn_Weights [label="Attention
+Weights"]
+	LTC_Context [label="LTC Context
+(batch, 64)"]
+	LSTM [label="LSTM Layer
+(hidden_dim=64)"]
+	LSTM_Context [label="LSTM Context
+(batch, 64)"]
+	Concat [label="Concatenate
+(batch, 128)"]
+	Fusion [label="Fusion Layer
+(128→64)"]
+	Classifier [label="Classifier
+(64→32→4)"]
+	Output [label="Output
+(batch, 4)"]
+	Input -> LTC
+	LTC -> LTC_Out
+	LTC_Out -> Attn_Calc
+	Attn_Calc -> Attn_Weights
+	Attn_Weights -> LTC_Context [label="weighted sum"]
+	LTC_Out -> LTC_Context [style=dashed]
+	LTC_Out -> LSTM
+	LSTM -> LSTM_Context
+	LTC_Context -> Concat
+	LSTM_Context -> Concat
+	Concat -> Fusion
+	Fusion -> Classifier
+	Classifier -> Output
+	LTC -> LTC [label=recurrent constraint=false]
+	subgraph cluster_attn_branch {
+		node [color=lightblue style=filled]
+		label="Attention Branch" style=dashed
+		Attn_Calc
+		Attn_Weights
+		LTC_Context
+	}
+	subgraph cluster_lstm_branch {
+		node [color=lightgreen style=filled]
+		label="LSTM Branch" style=dashed
+		LSTM
+		LSTM_Context
+	}
+}

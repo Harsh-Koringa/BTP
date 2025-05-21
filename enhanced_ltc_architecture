@@ -1,0 +1,27 @@
+// EnhancedLTC Model Architecture
+digraph {
+	I [label="Input
+(batch, seq_len, 22)"]
+	L1 [label="LTC_Cell Layer 1
+(hidden=64)"]
+	L2 [label="LTC_Cell Layer 2
+(hidden=64)"]
+	A [label="Attention
+(Self-Attention)"]
+	C1 [label="Linear
+(64→32)"]
+	C2 [label=ReLU]
+	C3 [label="Dropout(0.5)"]
+	C4 [label="Linear
+(32→4)"]
+	O [label="Output
+(batch, 4)"]
+	I -> L1
+	L1 -> L2
+	L2 -> A
+	A -> C1
+	C1 -> C2
+	C2 -> C3
+	C3 -> C4
+	C4 -> O
+}
