@@ -1,0 +1,239 @@
+model:- LTC Only 
+
+subject 01 
+Training complete. Best validation accuracy: 38.18%
+
+subject 02
+Training complete. Best validation accuracy: 33.33%
+
+subject 03 
+Training complete. Best validation accuracy: 37.04%
+
+subject 04
+Training complete. Best validation accuracy: 35.85%
+
+subject 05
+Training complete. Best validation accuracy: 41.51%
+
+subject 06
+Training complete. Best validation accuracy: 20.45%
+
+subject 07
+Training complete. Best validation accuracy: 46.30%
+
+subject 08
+Training complete. Best validation accuracy: 32.08%
+
+subject 09
+Training complete. Best validation accuracy: 27.08%
+
+
+
+model :- CNN + LTC 
+
+subject 01
+Training complete. Best validation accuracy: 31.25%
+
+subject 02
+Training complete. Best validation accuracy: 25.00%    
+
+subject 03
+Training complete. Best validation accuracy: 27.08%    
+
+subject 04
+Training complete. Best validation accuracy: 27.08%    
+
+subject 05
+Training complete. Best validation accuracy: 25.00%
+
+subject 06
+Training complete. Best validation accuracy: 37.50%
+
+subject 07
+Training complete. Best validation accuracy: 31.25%
+
+subject 08
+Training complete. Best validation accuracy: 33.33%
+
+subject 09
+Training complete. Best validation accuracy: 33.33%
+
+
+model :- LTC + TRANSFORMER
+
+subject 01
+Training complete. Best validation accuracy: 43.75%
+Average validation accuracy over 39 epochs: 28.85%
+
+subject 02
+Training complete. Best validation accuracy: 43.75%
+Average validation accuracy over 33 epochs: 31.69%
+
+subject 03
+Training complete. Best validation accuracy: 41.67%
+Average validation accuracy over 33 epochs: 28.41%
+
+subject 04
+Training complete. Best validation accuracy: 33.33%
+Average validation accuracy over 23 epochs: 27.17%
+
+subject 05
+Training complete. Best validation accuracy: 37.50%
+Average validation accuracy over 27 epochs: 31.17%
+
+subject 06
+Training complete. Best validation accuracy: 31.25%
+Average validation accuracy over 27 epochs: 28.16%
+
+subject 07
+Training complete. Best validation accuracy: 31.25%
+Average validation accuracy over 36 epochs: 28.36%
+
+subject 08
+Training complete. Best validation accuracy: 33.33%
+Average validation accuracy over 30 epochs: 26.67%
+
+subject 09
+Training complete. Best validation accuracy: 33.33%
+Average validation accuracy over 30 epochs: 26.25%
+
+
+model :- CNN + LTC + TRANSFORMER
+
+subject 01
+Training complete. Best validation accuracy: 29.17%
+Average validation accuracy over 15 epochs: 25.14%
+
+subject 02
+Training complete. Best validation accuracy: 25.00%
+Average validation accuracy over 12 epochs: 23.09%
+
+subject 03
+Training complete. Best validation accuracy: 22.92%
+Average validation accuracy over 11 epochs: 22.92%
+
+subject 04
+Training complete. Best validation accuracy: 22.92%
+Average validation accuracy over 11 epochs: 22.92%
+
+subject 05
+Training complete. Best validation accuracy: 27.08%
+Average validation accuracy over 27 epochs: 23.53%
+
+subject 06
+Training complete. Best validation accuracy: 27.08%
+Average validation accuracy over 27 epochs: 25.54%
+
+subject 07
+Training complete. Best validation accuracy: 27.08%
+Average validation accuracy over 14 epochs: 23.36%
+
+subject 08
+Training complete. Best validation accuracy: 27.08%
+Average validation accuracy over 24 epochs: 25.61%
+
+subject 09
+Training complete. Best validation accuracy: 27.08%
+Average validation accuracy over 17 epochs: 26.23%
+
+
+
+model:- LTC + LSTM
+
+subject 01
+Training complete. Best validation accuracy: 41.82%
+Average validation accuracy over 53 epochs: 30.33%
+
+subject 02
+Training complete. Best validation accuracy: 33.33%
+Average validation accuracy over 28 epochs: 26.85%
+
+subject 03
+Training complete. Best validation accuracy: 35.19%
+Average validation accuracy over 41 epochs: 30.08%
+
+subject 04
+Training complete. Best validation accuracy: 33.96%
+Average validation accuracy over 32 epochs: 28.18%
+
+subject 05
+Training complete. Best validation accuracy: 39.62%
+Average validation accuracy over 29 epochs: 30.45%
+
+subject 06
+Training complete. Best validation accuracy: 36.36%
+Average validation accuracy over 30 epochs: 25.91%
+
+subject 07
+Training complete. Best validation accuracy: 37.04%
+Average validation accuracy over 26 epochs: 17.52%
+
+subject 08
+Training complete. Best validation accuracy: 33.96%
+Average validation accuracy over 23 epochs: 31.17%
+
+subject 09
+Training complete. Best validation accuracy: 29.17%
+Average validation accuracy over 36 epochs: 23.78%
+
+
+model :- LTC ONLY
+
+subject 01
+Training complete. Best validation accuracy: 25.45%
+Average validation accuracy over 28 epochs: 19.48%
+
+subject 02
+Training complete. Best validation accuracy: 33.33%
+Average validation accuracy over 27 epochs: 29.97%
+
+subject 03
+Training complete. Best validation accuracy: 40.74%
+Average validation accuracy over 27 epochs: 35.94%
+
+subject 04
+Training complete. Best validation accuracy: 37.74%
+Average validation accuracy over 43 epochs: 31.33%
+
+subject 05
+Training complete. Best validation accuracy: 33.96%
+Average validation accuracy over 23 epochs: 28.47%
+
+subject 06
+Training complete. Best validation accuracy: 20.45%
+Average validation accuracy over 22 epochs: 14.67%
+
+subject 07
+Training complete. Best validation accuracy: 50.00%
+Average validation accuracy over 24 epochs: 36.96%
+
+subject 08
+Training complete. Best validation accuracy: 28.30%
+Average validation accuracy over 23 epochs: 26.00%
+
+subject 09
+Training complete. Best validation accuracy: 31.25%
+Average validation accuracy over 25 epochs: 27.00%
+
+
+
+
+
+
+
+LTC
+
+Training complete. Best validation accuracy: 25.00%
+Average validation accuracy over 11 epochs: 25.00%
+
+LTC + LSTM
+
+Training complete. Best validation accuracy: 25.00%
+Average validation accuracy over 11 epochs: 25.00%
+
+LTC + TRAN
+
+Training complete. Best validation accuracy: 25.00%
+Average validation accuracy over 11 epochs: 25.00%
+
+

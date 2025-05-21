@@ -1,0 +1,55 @@
+// Transformer Encoder Architecture
+digraph {
+	rankdir=LR
+	node [fontname=Arial shape=box style=filled]
+	subgraph cluster_input {
+		color=lightgreen fillcolor=lightgreen label=Input style=filled
+		input [label="EEG Sequence
+(batch, seq_len, 22)" fillcolor=white]
+		pos_enc [label="Positional
+Encoding" fillcolor=white]
+		embedding [label=Embedding fillcolor=white]
+		input -> pos_enc
+		pos_enc -> embedding
+	}
+	subgraph cluster_transformer {
+		color=lightsalmon fillcolor=lightsalmon label="Transformer Encoder" style=filled
+		attn1 [label="Multi-Head
+Attention" fillcolor=darksalmon]
+		norm1 [label="Add & Norm" fillcolor=white]
+		ff1 [label="Feed Forward" fillcolor=white]
+		norm2 [label="Add & Norm" fillcolor=white]
+		attn2 [label="Multi-Head
+Attention" fillcolor=darksalmon]
+		norm3 [label="Add & Norm" fillcolor=white]
+		ff2 [label="Feed Forward" fillcolor=white]
+		norm4 [label="Add & Norm" fillcolor=white]
+		attn1 -> norm1
+		norm1 -> ff1
+		ff1 -> norm2
+		norm2 -> attn2
+		attn2 -> norm3
+		norm3 -> ff2
+		ff2 -> norm4
+	}
+	subgraph cluster_output {
+		color=lightblue fillcolor=lightblue label=Output style=filled
+		pool [label="Global Pooling" fillcolor=white]
+		classifier [label="Dense Classifier" fillcolor=white]
+		output [label="Output
+(batch, 4)" fillcolor=white]
+		pool -> classifier
+		classifier -> output
+	}
+	embedding -> attn1
+	norm4 -> pool
+	note1 [label="Learns dependencies
+across time steps" color=gray fillcolor=white shape=note]
+	note2 [label="Processes each
+time step independently" color=gray fillcolor=white shape=note]
+	note3 [label="Summarizes temporal
+information" color=gray fillcolor=white shape=note]
+	note1 -> attn1 [arrowhead=none color=gray style=dashed]
+	note2 -> ff1 [arrowhead=none color=gray style=dashed]
+	note3 -> pool [arrowhead=none color=gray style=dashed]
+}
